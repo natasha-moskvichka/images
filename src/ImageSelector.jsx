@@ -24,7 +24,7 @@ const wordsWithImages = [
 ];
 
 export default function ImageSelector({info, onHandlerImg}) {
-    const [wordsInput, setWordsInput] = useState('');
+    const [wordsInput, setWordsInput] = useState(info || '');
     const [animal, setAnimal] = useState({
         wordProp: '',
         imageProp: ''
@@ -35,12 +35,14 @@ export default function ImageSelector({info, onHandlerImg}) {
     }, [info])
 
     useEffect(() => {
-        const founderValue = wordsWithImages.find((elem) => elem.word === wordsInput);
+        const founderValue = wordsWithImages.find((elem) => elem.word.toLowerCase() === wordsInput.toLowerCase());
 
         if (founderValue) {
+            console.log(founderValue)
             setAnimal({wordProp: founderValue.word, imageProp: founderValue.image});
             if (onHandlerImg) {
-                onHandlerImg(founderValue.image)
+                onHandlerImg(founderValue.image);
+
             }
         }
 
@@ -52,6 +54,7 @@ export default function ImageSelector({info, onHandlerImg}) {
            {/* <p>Это слово из инпут: {info}</p>*/}
             <div>
                 <p>Животное: {wordsInput}</p>
+
             </div>
         </div>
     )

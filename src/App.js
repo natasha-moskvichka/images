@@ -15,7 +15,8 @@ function App() {
     }
 
     function getNewImage(newImg) {
-        setImage(newImg)
+        setImage(newImg);
+
     }
 
     return (
